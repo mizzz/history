@@ -52,4 +52,14 @@
 		<photo_loc>Camping</photo_loc>
 		<thumb_caption>Starfish</thumb_caption>
 	</photo>
+	<photo id="5">
+		<filename>2012-image1.jpg</filename>
+		<geo>
+			<lat>49.15</lat>
+			<lon>-123.733</lon>
+		</geo>
+		<photo_city>Gabriola Island, BC</photo_city>
+		<photo_loc>Camping</photo_loc>
+		<thumb_caption>Typography</thumb_caption>
+	</photo>
 </album>
