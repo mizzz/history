@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>1flickrWithGeo.html</title>
+</head>
+	
+<body>
+<h1>Flickr</h1>
+<h2>Plot photos on map</h2>
+<h3>Steps</h3>
+	<ol>
+		<li>Request Vancouver public photos from flickr that contain geo coodinates.(latitude and longitude)</li>
+        <li>Plot pins on the slippy map to an exact location with an info bubble containing HTML.(ensure this code is modular meaning reusable)</li>
+        <li>Combine these steps to plot the flickr photos on the map as pins. When the user clicks on a pin hte thumbnail photo will appear in the info bubble</li>
+    </ol>
+    
+    <h3>Technologies</h3>
+    <ul>
+    	<li>Mapstraction Slippy map abstraction JS library</li>
+        <li>jQuery AJAX</li>
+        <li>JavaScript</li>
+
+	<h3>LIVE DEMO</h3>
+    
+    <p>Demonstrate step 1</p>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script> 
+	<!--Attach Mapstraction abstraction layer with Google as the map provider-->
+	<script src="map/mxn.js?(googlev3)"></script>
+	<!--Attach Google Maps-->
+	<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <!--Attach Map code-->
+    <script src="js/map.js"></script>
+    <script>
+    	var mapstraction = setMap();
+		var newyorkPoint = createPoint(40.67, -73.94);
+		mapstraction.setCenterAndZoom(newyorkPoint,11);
+		
+		$.ajax({
+			url: 'newyork-geo.json',
+			dataType: 'json',
+			success: function(geojson){
+				
+				$.each(geojson.geometries, function(i, geoPoint){
+					var pin = createPin(createPoint(geoPoint.coordinates[1],geoPoint.coordinates[0]));
+					pin.setInfoBubble('Hello<b>World!</b>My ID is' +i);
+					mapstraction.addMarker(pin);
+				});
+			}
+		});
+    </script>
+    
+</body>
+</html>
